@@ -9,5 +9,5 @@ func main() {
 
 	fmt.Print(i)
 	fmt.Print(j)
-	fmt.Print("mrr muho")
+	fmt.Print("mrr muho sametavcii")
 }
