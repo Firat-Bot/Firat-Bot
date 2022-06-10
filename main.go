@@ -1,13 +1,7 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
-	var i, j string = "Hello", "World"
-
-	fmt.Print(i)
-	fmt.Print(j)
-	fmt.Print("mrr muho sametavcii")
+	fmt.Println("Mrr muho changed all main")
 }
