@@ -7,26 +7,27 @@ import (
 )
 
 type Data struct {
-	titles      string
+	title       string
 	description string
-}
-type Datas struct {
-	datas []Datas
 }
 
 func main() {
 	fmt.Println("Web Scraping...")
 
 	c := colly.NewCollector(
-		colly.AllowedDomains("yaz.tf.firat.edu.tr"),
+		colly.AllowedDomains("http://yaz.tf.firat.edu.tr", "yaz.tf.firat.edu.tr"),
 	)
-
-	c.OnHTML(".announcements", func(e *colly.HTMLElement) {
-
-		links := e.ChildAttrs("p", "class")
-		fmt.Println(links, "\n")
+	var datas []Data
+	c.OnHTML(".anno-details", func(e *colly.HTMLElement) {
+		selection := e.DOM
+		data := Data{
+			title:       selection.Find("p.anno-details-title").Text(),
+			description: selection.Find("p.anno-details-description").Text(),
+		}
+		datas = append(datas, data)
 
 	})
 	c.Visit("http://yaz.tf.firat.edu.tr/tr/announcements-all")
+	fmt.Println(datas[0].description)
 
 }
