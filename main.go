@@ -11,5 +11,6 @@ func main() {
 	fmt.Print(j)
 	fmt.Print("mrr muho")
 	fmt.Print("new main")
+	fmt.Print("deneme new branch")
 
 }
