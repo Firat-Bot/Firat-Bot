@@ -1,16 +1,7 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
-	var i, j string = "Hello", "World"
-
-	fmt.Print(i)
-	fmt.Print(j)
-	fmt.Print("mrr muho")
-	fmt.Print("new main")
-	fmt.Print("deneme new branch")
-
+	fmt.Println("Mrr muho changed all main")
 }
