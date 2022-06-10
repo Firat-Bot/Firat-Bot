@@ -1,8 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
+	var i, j string = "Hello", "World"
 
-	fmt.Print("Selama Canımm")
+	fmt.Print(i)
+	fmt.Print(j)
 }
