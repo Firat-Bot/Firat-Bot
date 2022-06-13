@@ -2,50 +2,25 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"os"
-	"strings"
 
-	"github.com/gocolly/colly"
+	routers "gophers/api/routes"
+
+	"github.com/gin-gonic/gin"
 )
-
-type Data struct {
-	title       string
-	description string
-	url         string
-}
 
 func main() {
 	fmt.Println("Web Scraping...")
 
-	c := colly.NewCollector(
-		colly.AllowedDomains("http://yaz.tf.firat.edu.tr", "yaz.tf.firat.edu.tr"),
-	)
-	var datas []Data
-	c.OnHTML(".anno-details", func(e *colly.HTMLElement) {
-		selection := e.DOM
-		data := Data{
-			title:       strings.TrimSpace(selection.Find("p.anno-details-title").Text()),
-			description: strings.TrimSpace(selection.Find("p.anno-details-description").Text()),
-			url:         e.ChildAttr("a", "href"),
-		}
-		fmt.Println(data)
-
-		datas = append(datas, data)
-
-	})
-	c.Visit("http://yaz.tf.firat.edu.tr/tr/announcements-all")
-	file, err := os.Create("announcements.txt")
-	if err != nil {
-		log.Fatal(err)
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = ":8080"
 	}
-	defer file.Close()
-	for _, i := range datas {
-		_, err := file.WriteString(i.title)
-		_, err = file.WriteString(i.description)
-		_, err = file.WriteString(i.url)
-		if err != nil {
-			log.Fatal(err)
-		}
-	}
+
+	router := gin.New()
+	gin.SetMode(gin.ReleaseMode)
+	routers.AnnoRoutes(router)
+
+	fmt.Println(port, ": connected")
+	router.Run(port)
 }
