@@ -52,7 +52,7 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 		return
 	}
 	if m.Content == "duyuru" {
-		response, err := http.Get("Api Fırat Bot")
+		response, err := http.Get("Api Fırat Bot") //You can add api
 		if err != nil {
 			fmt.Println("Error occurred while invoking command ", err)
 		}
