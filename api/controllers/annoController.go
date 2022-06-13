@@ -32,9 +32,7 @@ func GetAnnos() gin.HandlerFunc {
 	c.Visit("http://yaz.tf.firat.edu.tr/tr/announcements-all")
 
 	return func(c *gin.Context) {
-
 		c.JSON(http.StatusOK, events)
-
 	}
 
 }

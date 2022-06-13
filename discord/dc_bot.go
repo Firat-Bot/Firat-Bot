@@ -4,7 +4,8 @@ import (
 	"flag"
 	"fmt"
 	"github.com/bwmarrin/discordgo"
-	"net/http"
+	"github.com/gin-gonic/gin"
+	controller "gophers/api/controllers"
 	"os"
 	"os/signal"
 	"syscall"
@@ -18,7 +19,7 @@ func init() {
 	flag.StringVar(&Token, "t", "", "Bot Token")
 	flag.Parse()
 }
-func main() {
+func AddDiscord() {
 	dg, err := discordgo.New(" Bot " + Token)
 	if err != nil {
 		fmt.Println("Error creating Discord Session", err)
@@ -46,24 +47,24 @@ type Announcements struct {
 	URL         string `json:"url"`
 }
 
+func router() gin.IRoutes {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = ":8080"
+	}
+
+	router := gin.New()
+	gin.SetMode(gin.ReleaseMode)
+	router.Run(port)
+	return router.GET("/annos", controller.GetAnnos())
+}
+
 func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 	if m.Author.ID == s.State.User.ID {
 		return
 	}
 	if m.Content == "duyuru" {
-		response, err := http.Get("Api Fırat Bot") //You can add api
-		if err != nil {
-			fmt.Println("Error occurred while invoking command ", err)
-		}
-		defer response.Body.Close()
-		if response.StatusCode == 200 {
-			_, err = s.ChannelFileSend(m.ChannelID, "announcements.txt", response.Body)
-			if err != nil {
-				fmt.Println(err)
-			}
-		} else {
-			fmt.Println("Error while send announcements")
-		}
+		router()
 	}
 }
