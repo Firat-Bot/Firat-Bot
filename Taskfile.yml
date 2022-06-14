@@ -4,7 +4,7 @@ tasks:
   build:
     desc: Build the app
     cmds:
-      - GOFLAGS=-mod=mod go build -o bin/firat-bot main.go
+      - GOFLAGS=-mod=mod go build -o bin/gopher-bot-discord main.go
 
   run:
     desc: Run the app
@@ -14,4 +14,4 @@ tasks:
   bot:
     desc: Execute the bot
     cmds:
-      - ./bin/firat-bot -t $BOT_TOKEN
+      - ./bin/gopher-bot-discord -t $BOT_TOKEN

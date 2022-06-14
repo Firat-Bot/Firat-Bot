@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/sametavcii/Bot/Firat-Bot'
+export BOT_TOKEN=OTg1NjQ3MTExMTEyNjI2Mjg2.GtQ4Sw.dmlBANk_KXFi-MMRvbtpqCOQ6tG1iHb8t5IKLY
+make: Leaving directory '/home/sametavcii/Bot/Firat-Bot'
+ 
