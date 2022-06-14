@@ -9,6 +9,7 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+	"time"
 )
 
 var (
@@ -45,19 +46,20 @@ func DiscordRun() {
 	dg.Close()
 }
 func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
-
 	if m.Author.ID == s.State.User.ID {
 		return
 	}
 
-	if m.Content == "duyuru" {
+	if m.Content == "/duyuru" {
+
 		go routers.Router()
+		time.Sleep(2 * time.Second)
 
 		_, err := s.ChannelMessageSend(m.ChannelID, readFile())
 		if err != nil {
 			fmt.Println("Dosya gönderilemedi", err)
 		}
-
+		defer os.Remove("announcements.txt")
 	}
 }
 
