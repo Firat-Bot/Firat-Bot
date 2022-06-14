@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Jun 14 11:26:40 2022
+# Make data base, printed on Tue Jun 14 12:48:29 2022
 
 # Variables
 
@@ -127,7 +127,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 52806
+GIO_LAUNCHED_DESKTOP_FILE_PID = 62408
 # automatic
 %F = $(notdir $%)
 # environment
@@ -193,7 +193,7 @@ SHLVL = 0
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-e0ac8a1e-7a72-499a-9e76-0bc8f42fb3f5.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-f16b0fdc-aaa0-4fad-ad35-9dfeb527721e.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -273,14 +273,13 @@ LC_ADDRESS = tr_TR.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 52856
+VSCODE_PID = 62463
 # variable set hash-table stats:
 # Load=131/1024=13%, Rehash=0, Collisions=23/156=15%
 
 # Pattern-specific Variable Values
 
 # No pattern-specific variable values.
- 
 
 # Directories
 
@@ -317,7 +316,7 @@ all:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-14 10:59:04.246330404
+#  Last modified 2022-06-14 11:36:34.218458932
 #  File has been updated.
 #  Successfully updated.
 
@@ -327,7 +326,7 @@ build:
 #  File does not exist.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 11):
-	./bin/Firat-Bot  -t  $ BOT_TOKEN
+	./bin/Firat-Bot  -t  $BOT_TOKEN
 
 token:
 #  Phony target (prerequisite of .PHONY).
@@ -335,7 +334,7 @@ token:
 #  File does not exist.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 2):
-	export BOT_TOKEN=OTg1NjQ3MTExMTEyNjI2Mjg2.G-_GYC.BIXd3wpbuIxzYfmc9hXF39xtyH586GK1wAEogc
+	export BOT_TOKEN=OTg1NjQ3MTExMTEyNjI2Mjg2.GtQ4Sw.dmlBANk_KXFi-MMRvbtpqCOQ6tG1iHb8t5IKLY
 
 # Not a target:
 .DEFAULT:
@@ -359,12 +358,12 @@ run:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 24 / storage = 192 B / avg = 8 B
-# current buf: size = 8162 B / used = 192 B / count = 24 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 24 / storage = 185 B / avg = 7 B
+# current buf: size = 8162 B / used = 185 B / count = 24 / avg = 7 B
 
 # strcache performance: lookups = 37 / hit rate = 35%
 # hash-table stats:
 # Load=24/8192=0%, Rehash=0, Collisions=1/37=3%
-# Finished Make data base on Tue Jun 14 11:26:40 2022
+# Finished Make data base on Tue Jun 14 12:48:29 2022
 
  
