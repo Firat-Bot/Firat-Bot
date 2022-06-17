@@ -4,17 +4,20 @@ import (
 	"flag"
 	"fmt"
 	"github.com/bwmarrin/discordgo"
-	"gophers/api/routers"
-	"io/ioutil"
 	"os"
 	"os/signal"
 	"syscall"
-	"time"
 )
 
 var (
 	Token string
 )
+
+type Announcements struct {
+	Title       string `json:"title"`
+	Description string `json:"description"`
+	Url         string `json:"url"`
+}
 
 func init() {
 	flag.StringVar(&Token, "t", "", "Bot Token")
@@ -51,22 +54,8 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 
 	if m.Content == "/duyuru" {
+		url := "http://localhost:8080/annos"
+		Announce(url, s, m)
 
-		go routers.Router()
-		time.Sleep(2 * time.Second)
-
-		_, err := s.ChannelMessageSend(m.ChannelID, readFile())
-		if err != nil {
-			fmt.Println("Dosya gönderilemedi", err)
-		}
-		defer os.Remove("announcements.txt")
 	}
-}
-
-func readFile() string {
-	content, err := ioutil.ReadFile("announcements.txt")
-	if err != nil {
-		fmt.Println(err)
-	}
-	return string(content)
 }
