@@ -18,6 +18,12 @@ type Announcements struct {
 	Description string `json:"description"`
 	Url         string `json:"url"`
 }
+type Lecturer struct {
+	Name      string `json:"name"`
+	Email     string `json:"email"`
+	Phone     string `json:"phone"`
+	Workspace string `json:"workspace"`
+}
 
 func init() {
 	flag.StringVar(&Token, "t", "", "Bot Token")
@@ -56,6 +62,11 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	if m.Content == "/duyuru" {
 		url := "http://localhost:8080/annos"
 		Announce(url, s, m)
-
 	}
+
+	if m.Content == "/prof" {
+		url := "http://localhost:8080/lectures"
+		Lectures(url, s, m)
+	}
+
 }

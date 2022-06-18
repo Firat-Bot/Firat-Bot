@@ -16,12 +16,12 @@ func GetAnnos() gin.HandlerFunc {
 	c := colly.NewCollector(
 		colly.AllowedDomains("http://yaz.tf.firat.edu.tr", "yaz.tf.firat.edu.tr"),
 	)
-	c.OnHTML(".anno-details", func(e *colly.HTMLElement) {
-		selection := e.DOM
+	c.OnHTML(".anno-details", func(element *colly.HTMLElement) {
+		selection := element.DOM
 		event := models.Event{
 			Title:       strings.TrimSpace(selection.Find("p.anno-details-title").Text()),
 			Description: strings.TrimSpace(selection.Find("p.anno-details-description").Text()),
-			Url:         e.ChildAttr("a", "href"),
+			Url:         element.ChildAttr("a", "href"),
 		}
 		events = append(events, event)
 	})
@@ -30,4 +30,7 @@ func GetAnnos() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		c.JSON(http.StatusOK, events)
 	}
+}
+func GetInfoForLecturer() gin.HandlerFunc {
+
 }
