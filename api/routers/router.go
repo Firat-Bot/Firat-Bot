@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"gophers/api/controllers"
+	"net/http"
 	"os"
 )
 
@@ -18,11 +19,20 @@ func Router() gin.IRoutes {
 	}
 	router := gin.New()
 	gin.SetMode(gin.ReleaseMode)
-
 	AnnoRoutes(router)
 
 	fmt.Println(port, ": connected")
 	router.Run(port)
-	return router.GET("/annos", controller.GetAnnos())
 
+	url := "http://localhost:8080/annos"
+	return Response(url, router)
+
+}
+func Response(url string, router *gin.Engine) gin.IRoutes {
+
+	resp, _ := http.Get(url)
+	if resp.StatusCode == 200 {
+		return router.Use()
+	}
+	return router.GET("/annos", controller.GetAnnos())
 }
