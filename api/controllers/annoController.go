@@ -33,4 +33,34 @@ func GetAnnos() gin.HandlerFunc {
 }
 func GetInfoForLecturer() gin.HandlerFunc {
 
+	var lecturer []models.Lecturer
+
+	c := colly.NewCollector(
+		colly.AllowedDomains("http://yaz.tf.firat.edu.tr", "yaz.tf.firat.edu.tr"),
+	)
+	//var name string
+	c.OnHTML(".staff-content-text", func(element *colly.HTMLElement) {
+
+		var all []string
+		all = append(all, element.ChildText("p"))
+		splitEPosta := strings.Split(all[0], "Telefon")
+		splitPhone := strings.Split(splitEPosta[1], "Çalışma")
+		if strings.Contains(splitEPosta[1], "Kişisel") {
+			splitPhone = strings.Split(splitEPosta[1], "Kişisel")
+		}
+
+		lecture := models.Lecturer{
+			Name:      element.ChildText("h3"),
+			Email:     splitEPosta[0],
+			Phone:     splitPhone[0],
+			Workspace: splitPhone[1],
+		}
+		lecturer = append(lecturer, lecture)
+
+	})
+	c.Visit("http://yaz.tf.firat.edu.tr/tr/academic-staffs")
+
+	return func(c *gin.Context) {
+		c.JSON(http.StatusOK, lecturer)
+	}
 }
