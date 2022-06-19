@@ -69,4 +69,19 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 		Lectures(url, s, m)
 	}
 
+	if m.Content == "dilekce" || m.Content == "dilekçe" || m.Content == "dilekçeler" {
+		s.ChannelMessageSend(m.ChannelID, "http://yaz.tf.firat.edu.tr/tr/page/560")
+	}
+
+	if m.Content == "e-posta" || m.Content == "ogrenci e-posta" || m.Content == "firat mail" {
+		s.ChannelMessageSend(m.ChannelID, "https://posta.firat.edu.tr/")
+	}
+
+	if m.Content == "ders-icerikleri" || m.Content == "Ders İçerikleri" || m.Content == "ders icerikleri" {
+		s.ChannelMessageSend(m.ChannelID, "http://yaz.tf.firat.edu.tr/subdomain_files/yaz.tf.firat.edu.tr/files/27/30.08.2021%20Guncel%20Ders%20I%CC%87c%CC%A7erikleri%20Genis%CC%A7letilmis%CC%A7%20Hali%20(1).pdf")
+	}
+
+	if m.Content == "ders listesi" || m.Content == "Ders Listesi" || m.Content == "müfredat" {
+		s.ChannelMessageSend(m.ChannelID, "http://yaz.tf.firat.edu.tr/subdomain_files/yaz.tf.firat.edu.tr/files/27/YAZILIM%202016%20Mufredati%20(1).pdf\n")
+	}
 }
